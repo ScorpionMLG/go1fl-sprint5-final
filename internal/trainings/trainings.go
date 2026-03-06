@@ -28,7 +28,7 @@ func (t *Training) Parse(datastring string) (err error) {
 
 	steps, err := strconv.Atoi(splitData[0])
 	if err != nil {
-		return err
+		return fmt.Errorf("invalid steps format: %w", err)
 	}
 	if steps <= 0 {
 		return fmt.Errorf("incorrect data: %q, steps: %d", datastring, steps)
@@ -39,7 +39,7 @@ func (t *Training) Parse(datastring string) (err error) {
 
 	duration, err := time.ParseDuration(splitData[2])
 	if err != nil {
-		return err
+		return fmt.Errorf("invalid duration format: %w", err)
 	}
 	if duration <= 0 {
 		return fmt.Errorf("incorrect data: %q, duration: %d", datastring, duration)
